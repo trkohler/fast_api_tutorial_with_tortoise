@@ -32,16 +32,16 @@ def test_create_engineer():
     main_language: str = "Python"
     years_experience: int = 2
     likes_coffee: bool = True
-    password: str = "mysupersecretpassword"  # new!
+    password: str = "mysupersecretpassword"
 
     payload = {
         "main_language": main_language,
         "years_experience": years_experience,
         "likes_coffee": likes_coffee,
-        "password": password,  # new!
+        "password": password,
     }
 
     response = client.post("/software_engineers/", json=payload)
     assert response.status_code == 200
-    assert response.json() == payload
-    assert "password" in response.json().keys()  # new!
+    # assert response.json() == payload
+    assert "password" not in response.json().keys()  # new !
