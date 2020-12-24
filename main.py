@@ -1,3 +1,4 @@
+from models import SoftwareEngineer
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -11,3 +12,8 @@ async def root():
 @app.get("/dynamic_routing/{number}")
 async def return_number(number: int, add: int = 0, multiply: int = 1):
     return {"number": (number + add) * multiply}
+
+
+@app.post("/software_engineers/")
+async def new_engineer(engineer: SoftwareEngineer):
+    return engineer

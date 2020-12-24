@@ -26,3 +26,17 @@ def test_dynamic_routing_with_query_params():
     )
     assert response.status_code == 200
     assert response.json() == {"number": (number + add) * multiply}
+
+
+def test_create_engineer():
+    main_language: str = "Python"
+    years_experience: int = 2
+    likes_coffee: bool = True
+    payload = {
+        "main_language": main_language,
+        "years_experience": years_experience,
+        "likes_coffee": likes_coffee,
+    }
+    response = client.post("/software_engineers/", json=payload)
+    assert response.status_code == 200
+    assert response.json() == payload
