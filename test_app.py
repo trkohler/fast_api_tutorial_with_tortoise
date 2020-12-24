@@ -20,20 +20,20 @@ def event_loop(client: TestClient) -> Generator:
     yield client.task.get_loop()
 
 
-def test_read_main():
+def test_read_main(client: TestClient):
     response = client.get("/")
     assert response.status_code == 200
     assert response.json() == {"message": "hello world"}
 
 
-def test_dynamic_routing():
+def test_dynamic_routing(client: TestClient):
     number: int = 10
     response = client.get(f"/dynamic_routing/{number}")
     assert response.status_code == 200
     assert response.json() == {"number": number}
 
 
-def test_dynamic_routing_with_query_params():
+def test_dynamic_routing_with_query_params(client: TestClient):
     number: int = 10
     add: int = 12
     multiply: int = 4
